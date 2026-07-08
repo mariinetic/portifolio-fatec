@@ -754,34 +754,116 @@ O SCARS é uma solução analítica voltada à consolidação e visualização d
 <img width="930" height="163" alt="image" src="https://github.com/user-attachments/assets/fe45a5b8-5aa1-4589-880c-0f9ab8c7d89d" />
 
 <details>
-  <summary><strong>Trilha de Desenvolvimento — Tela de Materiais</strong></summary>
+  <summary><strong>Trilha de Desenvolvimento</strong></summary>
 
-A tela de Materiais foi desenvolvida com base no wireframe do Product Owner da Sprint 1. Implementei os seguintes elementos:
+<details>
+  <summary><strong>Tela de Materiais</strong></summary>
 
-Cards de KPIs no topo (custo total, total de itens, custo médio por item), camada de filtros dinâmicos (período, programa, projeto, material e busca textual), visualizações gráficas (top 10 materiais por custo, top 10 por quantidade, custo por projeto e evolução temporal) e tabela detalhada com paginação.
+A tela de Materiais foi desenvolvida com base no wireframe elaborado pelo Product Owner durante a Sprint 1, buscando traduzir os requisitos de negócio em uma interface funcional, intuitiva e orientada à tomada de decisão. A implementação contemplou os seguintes elementos:
+
+**Cards de KPIs (indicadores-chave)**
+Posicionados no topo da tela, oferecem uma visão executiva e imediata dos principais números: custo total, total de itens e custo médio por item. Esses indicadores permitem que o usuário compreenda o panorama geral antes de aprofundar a análise nos dados detalhados.
 
 <img width="1340" height="556" alt="Captura de tela 2026-04-05 183000" src="https://github.com/user-attachments/assets/f515674f-aef1-475c-9790-cb0d1d9dc437" />
 
+**Camada de filtros dinâmicos**
+Foi implementado um conjunto de filtros interativos — período, programa, projeto, material e busca textual — que possibilitam ao usuário refinar a visualização conforme sua necessidade específica, tornando a análise mais precisa e personalizada.
+
 <img width="1338" height="335" alt="Captura de tela 2026-04-05 183010" src="https://github.com/user-attachments/assets/b5858d8b-fb51-450c-ae78-158979129113" />
 
+**Visualizações gráficas**
+Para facilitar a interpretação dos dados, foram desenvolvidos gráficos que apresentam:
+- Top 10 materiais por custo
+- Top 10 materiais por quantidade
+- Custo por projeto
+- Evolução temporal dos gastos
+
+Essas visualizações permitem identificar rapidamente padrões, tendências e materiais/projetos com maior impacto financeiro.
+
 <img width="1337" height="485" alt="Captura de tela 2026-04-05 183018" src="https://github.com/user-attachments/assets/74fe554b-be54-402b-b650-023c3c8da109" />
+
+**Tabela detalhada com paginação**
+Complementando os gráficos, uma tabela detalhada apresenta os dados em nível granular, com paginação para garantir bom desempenho mesmo diante de grandes volumes de registros, além de facilitar a consulta individual de itens.
+
+</details>
 
 </details>
 
 <details>
-  <summary><strong>Trilha DevOps — Monitoramento Sprint 1 e 2</strong></summary>
+  <summary><strong>Trilha DevOps</strong></summary>
 
-Estruturei a observabilidade da aplicação com Prometheus (coleta de métricas), Alertmanager (regras de alerta em `alerts.yml`) e Grafana (dashboards provisionados automaticamente via `sca-production-overview.json`). Configurei também uma camada de logs com Nginx, Logstash e pipeline `logstash.conf`, orquestrada com dois Docker Compose distintos (dev e prod).
+<details>
+  <summary><strong>Monitoramento</strong></summary>
 
-<img width="270" height="38" alt="Captura de tela 2026-04-05 183716" src="https://github.com/user-attachments/assets/55c7f8b0-9edb-45c7-a636-f4291ba55fe2" />
+**Monitoramento Contínuo**
 
-<img width="293" height="349" alt="Captura de tela 2026-04-05 183803" src="https://github.com/user-attachments/assets/1fc4f8aa-2e4b-499b-bd20-347e1183e0cb" />
+A implementação de monitoramento contínuo foi integrada diretamente ao pipeline de CI/CD, garantindo que a qualidade e a performance do sistema fossem validadas em cada Pull Request antes de qualquer promoção para ambientes superiores.
 
-<img width="289" height="65" alt="Captura de tela 2026-04-05 183727" src="https://github.com/user-attachments/assets/6078dafb-67e2-491e-9b05-fb35794c148b" />
+**Pipeline de validação automatizada**
+
+A cada PR aberto, o CI executava automaticamente:
+
+<img width="1354" height="602" alt="Captura de tela 2026-06-14 201239" src="https://github.com/user-attachments/assets/9d607edf-da65-4a92-bd89-8791657b8446" />
+
+- **Testes de fumaça (smoke tests)**: validação rápida das funcionalidades críticas, garantindo que o sistema estava operacional e livre de falhas básicas antes de prosseguir.
+- **Testes de carga (load tests)**: utilizando o K6, simulávamos cenários de uso para avaliar o comportamento do sistema sob diferentes volumes de requisições, identificando possíveis gargalos de performance ainda em estágio inicial do desenvolvimento.
+
+<img width="1358" height="669" alt="Captura de tela 2026-06-14 201403" src="https://github.com/user-attachments/assets/6eba88b0-4c92-4f9e-8166-186373712677" />
+
+**Fluxo de deploy**
+
+Após a aprovação nos testes automatizados, o pipeline realizava o deploy automático em ambiente de **staging**, permitindo validação em condições próximas às de produção. A promoção para **produção**, por sua vez, exigia **aprovação manual**, adicionando uma camada extra de segurança e controle humano sobre mudanças que impactariam o ambiente real dos usuários.
+
+**Observabilidade com Prometheus e Grafana**
+
+Os dados de performance coletados durante os testes e durante a operação dos ambientes eram exportados do **Prometheus** para o **Grafana**, onde foram construídos dashboards específicos tanto para o ambiente de staging quanto para o de produção. Essa separação permitiu:
+
+<img width="1355" height="596" alt="Captura de tela 2026-06-14 201500" src="https://github.com/user-attachments/assets/39c430cb-39a4-4baa-8901-209f5c41822c" />
+
+- Comparar o comportamento do sistema entre os dois ambientes;
+- Identificar regressões de performance antes que chegassem aos usuários finais;
+- Acompanhar métricas-chave (throughput, latência, taxa de erros) de forma visual e em tempo real.
+
+<img width="1353" height="597" alt="Captura de tela 2026-06-14 200618" src="https://github.com/user-attachments/assets/8fa25ec5-0593-41e6-a1cf-fc2ba2179e3d" />
+
+Essa abordagem consolidou um ciclo de feedback rápido, unindo testes automatizados, aprovação controlada e observabilidade — reduzindo riscos de deploys problemáticos e aumentando a confiabilidade do sistema em produção.
+
+<img width="903" height="74" alt="Captura de tela 2026-07-08 201133" src="https://github.com/user-attachments/assets/7325c6d5-aff5-4699-ac44-b595e6215064" />
+
+</details>
+
+<details>
+  <summary><strong>Documentação</strong></summary>
+
+Como etapa final do processo, foram elaboradas duas documentações distintas, cada uma direcionada a um público específico e com objetivos complementares:
+
+**Documentação para o cliente (manutenção do produto)**
+
+Voltada para o cliente/stakeholder do produto, essa documentação teve como foco orientar a manutenção contínua da aplicação, contemplando:
+- Visão geral da arquitetura e principais componentes do sistema;
+- Procedimentos de manutenção recorrente (rotinas, atualizações, boas práticas);
+- Passo a passo para identificação e resolução de problemas comuns;
+- Recomendações para garantir a estabilidade e a longevidade da solução ao longo do tempo.
+
+O objetivo foi garantir autonomia ao cliente para lidar com questões básicas do dia a dia, reduzindo a dependência de suporte técnico especializado para demandas simples.
+
+**Documentação para o time de DevOps**
+
+Já a segunda documentação foi elaborada pensando na transição de responsabilidades para o time de DevOps que assumiria o projeto posteriormente. Essa documentação teve caráter mais técnico e operacional, cobrindo:
+- Detalhamento da infraestrutura e do pipeline de CI/CD implementado;
+- Configuração dos ambientes de staging e produção;
+- Processo de monitoramento (Prometheus, Grafana) e testes automatizados (K6);
+- Fluxo de deploy, incluindo etapas de aprovação e possíveis pontos de atenção;
+- Diretrizes para troubleshooting em cenários mais complexos.
+
+Essa documentação teve como propósito assegurar uma transição de conhecimento fluida, permitindo que o time de DevOps compreendesse rapidamente as decisões técnicas tomadas e desse continuidade ao projeto com segurança e eficiência.
+
+</details>
 
 </details>
 
 <img width="933" height="153" alt="image" src="https://github.com/user-attachments/assets/051ad8aa-9248-4dee-804f-7dcf9d5fb227" />
+
 
 **Contribuições Pessoais:** Atuei nas trilhas de Desenvolvimento e DevOps. Na trilha de desenvolvimento, implementei a tela de Materiais completa com Vue.js e TypeScript — cards de KPIs, filtros dinâmicos, quatro visualizações gráficas e tabela com paginação. Na trilha de DevOps, estruturei toda a stack de monitoramento com Prometheus, Alertmanager e Grafana, além da pipeline de logs com Logstash, separando os ambientes dev e prod em Docker Compose distintos.
 
@@ -802,7 +884,10 @@ Estruturei a observabilidade da aplicação com Prometheus (coleta de métricas)
   Configuração de dois ambientes Docker Compose (dev e prod) com separação de responsabilidades por serviço.
 
 - **Prometheus / Grafana** — Uso com autonomia  
-  Configuração de targets de scraping, regras de alerta e provisionamento automático de dashboards.
+  Configuração de targets de scraping, regras de alerta e provisionamento automático de dashboards. Construção de dashboards customizados para ambientes de staging e produção, com acompanhamento de métricas-chave (throughput, latência, taxa de erros). Escrita de queries PromQL para consultas e visualizações específicas. Integração do fluxo de coleta e exportação de métricas ao pipeline de CI/CD, permitindo observabilidade contínua a cada deploy.
+
+- **K6** — Uso com autonomia  
+  Escrita de scripts de teste de carga e teste de fumaça (smoke tests), simulando cenários de uso com diferentes volumes de requisições. Definição de thresholds (limites) para métricas como tempo de resposta, taxa de erro e throughput. Integração dos testes ao pipeline de CI/CD, executando validações automatizadas a cada Pull Request antes da promoção para staging.
 
 - **GitHub Actions** — Uso com ajuda  
   Acompanhamento e documentação dos pipelines de CI/CD configurados no repositório.
