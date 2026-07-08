@@ -858,6 +858,9 @@ Já a segunda documentação foi elaborada pensando na transição de responsabi
 
 Essa documentação teve como propósito assegurar uma transição de conhecimento fluida, permitindo que o time de DevOps compreendesse rapidamente as decisões técnicas tomadas e desse continuidade ao projeto com segurança e eficiência.
 
+Neste link está disponível toda a documentação referente ao planejamento, desenvolvimento e entrega da aplicação, incluindo também as diretrizes de manutenção: 
+[Entrega do projeto](https://github.com/mariinetic/portifolio-fatec/tree/main/doc)
+
 </details>
 
 </details>
