@@ -1187,5 +1187,6 @@ Assim como no backend, esses ajustes garantiram que a aplicação frontend evolu
 
 ---
 
-![Brown Minimalist Welcome Message XTwitter Header (1)](https://github.com/user-attachments/assets/89030cf3-8b72-4d0b-8b0f-6286b52520a3)
+<img  width="1500" height="500" alt="image" src="https://github.com/user-attachments/assets/06b871fe-e34e-4666-8aa8-d05ef11176e5" />
+
 
