@@ -1055,6 +1055,80 @@ Neste link está disponível toda a documentação referente ao planejamento, de
 </details>
 
 </details>
+<details>
+  <summary><strong>Fixes e Extras</strong></summary>
+
+Além das funcionalidades principais, diversos ajustes técnicos, correções e melhorias de qualidade foram realizados ao longo do desenvolvimento da aplicação — tanto no backend quanto no frontend —, garantindo estabilidade, segurança e aderência às boas práticas de engenharia de software.
+
+<details>
+  <summary><strong>Backend</strong></summary>
+
+**Segurança**
+- [Correção de credencial hard-coded](https://github.com/Steam-Ducks/sca-server/commit/76bb5135ea1b613fc76f4528f39d3d645b3da9bf) no código-fonte, movendo o valor para variável de ambiente;
+- [Implementação de configuração obrigatória de secret key](https://github.com/Steam-Ducks/sca-server/commit/07dfe8375c14b4df41fabb3f80cb755ce28c6ddb) via variável de ambiente, evitando o uso de chaves padrão em produção.
+
+**Qualidade de código e CI/CD**
+- [Correção do pipeline (ci.yml)](https://github.com/Steam-Ducks/sca-server/commit/8911ebacef9f0d40b6c35ee21914e4e472bb443f) para garantir execução estável das etapas de build e teste;
+- [Padronização de formatação de código com Black](https://github.com/Steam-Ducks/sca-server/commit/8eb6e937d41555a6ae9fdbd7700d9cb9a4341f8a);
+- [Ajuste de configuração do SonarCloud](https://github.com/Steam-Ducks/sca-server/commit/d9621c36e29affca0ddaad5621c91dbbe5d88a1b) para análise estática de qualidade;
+- [Remoção de import não utilizado](https://github.com/Steam-Ducks/sca-server/commit/d3743e0e695700738142b65ef30a84ee1751da9c) em `core/urls.py`;
+- Correções pontuais de lint e formatação em diferentes features, como no [filtro por período](https://github.com/Steam-Ducks/sca-server/commit/6db00ca4fcd2e0f929d8d37c83e1a633d780dd89) e nos [filtros de materiais](https://github.com/Steam-Ducks/sca-server/commit/1addfd04e7d156720f10f7c27fe3c7bd14246b41);
+- Correções de cobertura e execução de testes automatizados (Tests & Coverage), como no [filtro por período](https://github.com/Steam-Ducks/sca-server/commit/a37aa485e849bee5558cf903a526538ad5139522) e nos [filtros de materiais](https://github.com/Steam-Ducks/sca-server/commit/5af8541201c6cd55671b1a72d5b786d4a11020c6).
+
+**Testes automatizados**
+- [Implementação de testes de backend para o filtro por período](https://github.com/Steam-Ducks/sca-server/commit/a6d0dc93a680678571540d554fc681321ab41ab3);
+- [Correção para permitir métodos HTTP seguros e não seguros](https://github.com/Steam-Ducks/sca-server/commit/6f7398316c3c8a224081d85b76f46530bdf0cf6f) (safe/unsafe) nos endpoints;
+- [Implementação de verificação automatizada de filtros](https://github.com/Steam-Ducks/sca-server/commit/f66b291c3b66c1c416701e3e14ea29cdd160c87a) aplicados nas telas analíticas.
+
+**Banco de dados e infraestrutura**
+- [Criação de migrations para os modelos de dados](https://github.com/Steam-Ducks/sca-server/commit/472190197e8615f985caa5241f92f7126b2f56da) (`sca_data`);
+- [Correção de lint, imports e configuração do PostgreSQL via Docker](https://github.com/Steam-Ducks/sca-server/commit/d3e84232c416ab244f06db322f27973d86cb3292) para o ambiente de desenvolvimento;
+- [Correção e padronização de requisições HTTP](https://github.com/Steam-Ducks/sca-server/commit/b9776c3255c0a969d4c3b91dca5e910bf90c68cc).
+
+**Monitoramento**
+- [Limpeza e reorganização do backend de monitoramento](https://github.com/Steam-Ducks/sca-server/commit/8d06bc8c3dde16ad0f973c8364e3978d2bcca66f), removendo código obsoleto;
+- [Correção no staging gate](https://github.com/Steam-Ducks/sca-server/commit/4eb1e726c9014abc58de562159c4f2450c584a2c) da pipeline de CI voltada ao ambiente de staging;
+- [Adição de alertas](https://github.com/Steam-Ducks/sca-server/commit/06491745504cf5db2ea7e40375a6a935ee59a2a5) e [integração com Grafana Cloud](https://github.com/Steam-Ducks/sca-server/commit/656d1609da637d9b81ce188d5f53eef2b273db19), com ajustes finos nos dashboards do K6.
+
+Esses ajustes, embora não visíveis diretamente na interface, foram fundamentais para manter a confiabilidade, a segurança e a manutenibilidade da API ao longo de toda a evolução do projeto.
+
+</details>
+
+<details>
+  <summary><strong>Frontend</strong></summary>
+
+**Qualidade de código e CI/CD**
+- [Correção de configuração do CI (ci.yml) e das propriedades do Sonar](https://github.com/Steam-Ducks/sca-client/commit/4acaeb710de02d999bc112081ad20174f90db42d);
+- [Correção de Lint e Type Check](https://github.com/Steam-Ducks/sca-client/commit/1cc3f5b9945bfb1e5f89a2a4800e8a6539542cd3) no pipeline de CI;
+- [Correção de problemas apontados pelo SonarCloud](https://github.com/Steam-Ducks/sca-client/commit/0f858f0f6d070dad466b39c61cd6bee09a395caf) no frontend;
+- Correções pontuais de lint e formatação em features específicas, como no [gráfico de materiais vs. horas técnicas](https://github.com/Steam-Ducks/sca-client/commit/f58158ee0f309810c9663bfa0d168a19b2cb1ce4) e nos [indicadores da tela de horas](https://github.com/Steam-Ducks/sca-client/commit/ac26f006b13d2a1f78ebde55906b902d31d6c48a).
+
+**Testes automatizados**
+- [Implementação de testes de frontend para métricas de monitoramento](https://github.com/Steam-Ducks/sca-client/commit/612f858dd17ac275b0284f832b5e9a4fb5001cfd), com [correção posterior dos testes unitários](https://github.com/Steam-Ducks/sca-client/commit/e2d1c56b2fdfafd29882beda495a8d2a0a9e3997);
+- [Criação de testes de frontend para o filtro por período](https://github.com/Steam-Ducks/sca-client/commit/21df22337fce3cb287930641f2b65cc4b6b63fd6);
+- [Correção de testes end-to-end (E2E)](https://github.com/Steam-Ducks/sca-client/commit/3f51608b8590d3a1bcfc865fd4b320ba58525cbf);
+- [Correção de testes unitários da tabela-resumo](https://github.com/Steam-Ducks/sca-client/commit/e9e38db98e0eb5aa44b71142c55927add3a7d68a) do dashboard principal.
+
+**Refatoração e utilitários compartilhados**
+
+Como parte de uma etapa de consolidação técnica, foram extraídos utilitários compartilhados entre as diferentes telas, reduzindo duplicação de código e padronizando comportamentos comuns da aplicação:
+- [Criação de utilitários compartilhados de formatação](https://github.com/Steam-Ducks/sca-client/commit/64c16fd94508959720b61359572d800c2a1a4d1e) (moeda, datas, números), reutilizados por todas as telas analíticas;
+- [Criação de um composable compartilhado de exportação](https://github.com/Steam-Ducks/sca-client/commit/fa52f88f723e3ae092b5c108be64d023fd122531), centralizando a lógica de exportação de relatórios;
+- [Criação de um utilitário compartilhado de construção de queries](https://github.com/Steam-Ducks/sca-client/commit/6673afb17ed6c5dbe2d738649a59f3908f0ec646), padronizando a forma como os filtros são convertidos em parâmetros de requisição;
+- [Padronização das definições de tipos (TypeScript)](https://github.com/Steam-Ducks/sca-client/commit/2ed6109eceb31bb42a485e2c9690d14a949827cb) em toda a aplicação, aumentando a consistência e a segurança de tipos.
+
+**Monitoramento**
+- [Conexão dos utilitários de ETL do frontend com o backend](https://github.com/Steam-Ducks/sca-client/commit/2c02cf2789f133ff7930fcd3fa4b6e5b3c6d215e) para rastreamento de logs;
+- [Limpeza e reorganização do monitoramento no frontend](https://github.com/Steam-Ducks/sca-client/commit/6d9d565c2e38611fb5fca51a6ee636e4155e7793), removendo código obsoleto.
+
+**Deploy**
+- [Deploy do Frontend para o ambiente de Produção](https://github.com/Steam-Ducks/sca-client/commit/d825ee1eec6b6e311d7d2d6d2c62f57340420f55).
+
+Assim como no backend, esses ajustes garantiram que a aplicação frontend evoluísse de forma sustentável, com código limpo, testado e alinhado entre as diferentes telas do sistema.
+
+</details>
+
+</details>
 
 <img width="933" height="153" alt="image" src="https://github.com/user-attachments/assets/051ad8aa-9248-4dee-804f-7dcf9d5fb227" />
 
