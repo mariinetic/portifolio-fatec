@@ -751,7 +751,9 @@ O SCARS é uma solução analítica voltada à consolidação e visualização d
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" />
 </p>
 
+
 <img width="930" height="163" alt="image" src="https://github.com/user-attachments/assets/fe45a5b8-5aa1-4589-880c-0f9ab8c7d89d" />
+
 
 <details>
   <summary><strong>Trilha de Desenvolvimento</strong></summary>
@@ -767,7 +769,7 @@ Posicionados no topo da tela, oferecem uma visão executiva e imediata dos princ
 <img width="1340" height="556" alt="Captura de tela 2026-04-05 183000" src="https://github.com/user-attachments/assets/f515674f-aef1-475c-9790-cb0d1d9dc437" />
 
 **Camada de filtros dinâmicos**
-Foi implementado um conjunto de filtros interativos — período, programa, projeto, material e busca textual — que possibilitam ao usuário refinar a visualização conforme sua necessidade específica, tornando a análise mais precisa e personalizada.
+Foi implementado um conjunto de filtros interativos — período, programa, projeto, material, fornecedor, categoria do material e busca textual — que possibilitam ao usuário refinar a visualização conforme sua necessidade específica, tornando a análise mais precisa e personalizada.
 
 <img width="1338" height="335" alt="Captura de tela 2026-04-05 183010" src="https://github.com/user-attachments/assets/b5858d8b-fb51-450c-ae78-158979129113" />
 
@@ -784,6 +786,187 @@ Essas visualizações permitem identificar rapidamente padrões, tendências e m
 
 **Tabela detalhada com paginação**
 Complementando os gráficos, uma tabela detalhada apresenta os dados em nível granular, com paginação para garantir bom desempenho mesmo diante de grandes volumes de registros, além de facilitar a consulta individual de itens.
+
+</details>
+
+<details>
+  <summary><strong>Tela de Horas</strong></summary>
+
+Assim como a tela de Materiais, a tela de Horas foi construída para oferecer uma visão analítica do esforço técnico investido em cada projeto, permitindo o acompanhamento de custo e produtividade da equipe ao longo do tempo. A implementação contemplou os seguintes elementos:
+
+**Indicadores e tabela analítica**
+
+A tela exibe indicadores-chave sobre as horas técnicas — como total de horas e custo médio — além de uma tabela analítica detalhada, trazendo dados de horas trabalhadas e seus custos associados. Todos os componentes respeitam os filtros aplicados e são atualizados automaticamente sempre que um novo recorte de dados é selecionado, com valores exibidos em formatação correta de moeda e casas decimais.
+
+**Camada de filtros dinâmicos**
+
+Foi implementado um conjunto robusto de filtros globais, permitindo refinar a investigação do esforço técnico sob diferentes perspectivas: período, programa, projeto, colaborador (por nome do recurso), papel (ex.: Desenvolvedor Sênior, Gerente de Projeto) e tarefa específica. Todos os gráficos e tabelas da tela são atualizados automaticamente após a aplicação de qualquer combinação de filtros — inclusive combinações múltiplas, como papel + projeto.
+
+**Validações realizadas**
+- Verificação da filtragem por colaborador, papel e tarefa específica, individualmente;
+- Verificação da combinação de múltiplos filtros aplicados simultaneamente;
+- Verificação da atualização automática dos componentes analíticos após a aplicação dos filtros;
+- Verificação da formatação correta dos valores numéricos e monetários exibidos.
+
+</details>
+
+<details>
+  <summary><strong>Evolução Temporal das Horas</strong></summary>
+
+Atendendo à necessidade do analista de acompanhar o ritmo de execução do projeto ao longo do tempo, foi desenvolvido um gráfico de série temporal dedicado à evolução das horas técnicas registradas. Essa visualização complementa os indicadores estáticos da tela de Horas, trazendo uma dimensão temporal que permite identificar tendências, picos de esforço e possíveis desacelerações no ritmo da equipe.
+
+O gráfico exibe, período a período, a soma total de horas trabalhadas, permitindo observar de forma clara se o esforço técnico está aumentando, se mantendo estável ou diminuindo ao longo do ciclo de vida do projeto. Essa leitura é especialmente útil para gestores e analistas que precisam antecipar gargalos de capacidade da equipe ou justificar variações de custo relacionadas à mão de obra técnica.
+
+<img width="532" height="258" alt="Captura de tela 2026-05-15 203505" src="https://github.com/user-attachments/assets/0552ca60-2b55-4826-9018-e1db79ba3038" />
+
+**Comportamento e regras de negócio**
+
+A implementação seguiu os seguintes critérios de aceitação:
+- Exibição da evolução temporal das horas de forma agregada por período (mês);
+- Respeito integral aos filtros globais aplicados na tela (período, programa, projeto, colaborador, papel e tarefa), refletindo automaticamente qualquer refinamento feito pelo usuário;
+- Ordenação cronológica correta dos períodos no eixo horizontal do gráfico, evitando inconsistências na leitura da tendência;
+- Exibição precisa dos valores agregados por período, com formatação numérica adequada;
+- Tratamento específico para períodos sem horas registradas, evitando quebras visuais ou lacunas mal interpretadas no gráfico.
+
+**Validações realizadas**
+
+Para garantir a confiabilidade da funcionalidade, foram validados os seguintes cenários de teste:
+- Verificação da correta construção da linha de evolução temporal;
+- Verificação da responsividade do gráfico frente à aplicação de diferentes filtros;
+- Verificação do comportamento da visualização em cenários de ausência de dados em determinados períodos.
+
+Essa funcionalidade fecha o ciclo analítico da tela de Horas, unindo indicadores pontuais (KPIs), filtros dinâmicos e agora também uma visão evolutiva, dando ao usuário uma leitura completa — tanto do estado atual quanto da trajetória do esforço técnico ao longo do projeto.
+
+</details>
+
+<details>
+  <summary><strong>Composição de Custo (Materiais vs. Horas Técnicas)</strong></summary>
+
+Atendendo à necessidade do gestor de compreender o peso relativo de cada componente no custo total do projeto, foi desenvolvido um gráfico comparativo de composição de custo, contrastando os valores de materiais e de horas técnicas de forma visual e imediata.
+
+A visualização foi construída em formato de gráfico de rosca (donut chart), destacando de forma clara a proporção entre os dois principais fatores de custo do projeto. Essa leitura rápida permite ao gestor identificar, sem precisar navegar por tabelas detalhadas, se o projeto tem seu custo mais concentrado em materiais ou em mão de obra técnica — informação relevante tanto para negociações com fornecedores quanto para decisões de alocação de equipe.
+
+<img width="595" height="330" alt="Captura de tela de 2026-03-13 21-46-09" src="https://github.com/user-attachments/assets/e9a7eebb-c612-4704-9c78-26fcc8abac8f" />
+
+**Comportamento e regras de negócio**
+
+A implementação seguiu os seguintes critérios de aceitação:
+- Exibição da composição entre materiais e horas técnicas em um único componente visual;
+- Apresentação tanto em valores percentuais quanto em valores absolutos, conforme aplicável ao contexto analisado;
+- Respeito integral aos filtros ativos na tela, recalculando a composição de acordo com o recorte de dados selecionado;
+- Atualização automática da visualização sempre que uma nova fatia de dados (período, programa ou projeto) é selecionada.
+
+**Validações realizadas**
+
+Para garantir a confiabilidade da funcionalidade, foram validados os seguintes cenários de teste:
+- Verificação da correta composição percentual entre materiais e horas técnicas;
+- Verificação da exatidão dos valores absolutos exibidos;
+- Verificação da atualização da visualização em resposta à aplicação de filtros.
+
+Essa funcionalidade complementa a Tela Consolidada, oferecendo uma camada adicional de leitura executiva: enquanto a visão consolidada detalha os valores por programa e projeto, o gráfico de composição resume, em um único olhar, a proporção estrutural do custo do projeto como um todo.
+
+</details>
+
+<details>
+  <summary><strong>Tela Consolidada (Materiais e Horas)</strong></summary>
+
+Atendendo à necessidade do gestor de comparar, em uma única visão, os dois principais componentes de custo do projeto — materiais e horas técnicas —, foi desenvolvida a tela Consolidado, reunindo indicadores, gráficos comparativos e uma tabela detalhada em um único painel gerencial.
+
+**Resumo Geral (Cards de KPIs)**
+
+No topo da tela, três cards apresentam a visão executiva imediata do contexto selecionado: **Custo Total Consolidado**, **Total de Materiais** e **Total de Horas Técnicas**, cada um exibindo também o percentual de participação em relação ao custo total. Essa camada permite que o gestor compreenda, em segundos, a magnitude e a distribuição do custo antes de aprofundar a análise.
+
+<img width="586" height="357" alt="Captura de tela de 2026-03-13 22-19-24" src="https://github.com/user-attachments/assets/2686fb37-476b-4edc-9aaa-be0513ed7f01" />
+
+**Filtros de Consolidação**
+
+Foi implementada uma camada de filtros globais — período, programa e projeto — que impactam simultaneamente todos os componentes analíticos da tela (cards, gráficos e tabela), garantindo consistência entre as diferentes visualizações independentemente do recorte de dados escolhido.
+
+**Gráficos comparativos**
+
+Para facilitar a leitura gerencial, foram desenvolvidas três visualizações complementares:
+- **Custo Consolidado por Programa**: gráfico de barras comparando o custo total entre os diferentes programas (Infraestrutura, Desenvolvimento, Segurança, Cloud);
+- **Custo Consolidado por Projeto**: gráfico de barras horizontais rankeando os projetos por custo total, facilitando a identificação dos maiores consumidores de orçamento;
+- **Composição: Materiais vs. Horas Técnicas**: gráfico de rosca exibindo a proporção percentual entre os dois componentes de custo;
+- **Comparação Histórica entre Períodos**: gráfico de linha exibindo a evolução do custo total consolidado ao longo dos meses, permitindo identificar tendências de aumento ou redução de gastos.
+
+<img width="593" height="433" alt="Captura de tela de 2026-03-13 22-20-07" src="https://github.com/user-attachments/assets/2d855035-858b-4678-bab0-10f5b3b63f3b" />
+
+**Tabela Consolidada**
+
+Complementando os gráficos, uma tabela detalhada apresenta, linha a linha, o cruzamento entre Programa, Projeto, custo de Materiais, custo de Horas Técnicas, Total e Período, com suporte a ordenação por coluna. Essa tabela funciona como camada de validação, permitindo ao gestor conferir individualmente os valores que sustentam os gráficos apresentados acima.
+
+**Exportação de relatório**
+
+A tela conta ainda com um botão de exportação, permitindo ao gestor gerar um relatório com os dados consolidados exibidos, de acordo com os filtros aplicados no momento.
+
+**Regras de negócio**
+
+- Os custos de materiais refletem apenas a quantidade **comprometida/alocada** ao projeto, evitando distorções por estoque não utilizado;
+- Todos os componentes da tela respeitam os filtros globais aplicados, garantindo consistência entre indicadores, gráficos e tabela.
+
+**Validações realizadas**
+
+- Validação da exibição correta da tela e de seus componentes;
+- Validação dos gráficos consolidados;
+- Validação da tabela consolidada;
+- Validação do comportamento dos filtros globais.
+
+</details>
+
+<details>
+  <summary><strong>Tabela-resumo de Validação</strong></summary>
+
+Atendendo à necessidade do analista de validar e comparar os valores apresentados nos gráficos do dashboard, foi desenvolvida uma tabela-resumo posicionada no rodapé da tela, reunindo os principais agregados do contexto selecionado.
+
+Essa funcionalidade nasceu de uma demanda de confiabilidade: gráficos facilitam a leitura visual de tendências, mas não substituem a necessidade de conferência numérica precisa. A tabela-resumo funciona justamente como essa camada de checagem, permitindo ao analista confirmar, número a número, que os valores exibidos graficamente correspondem aos dados agregados reais.
+
+**Comportamento e regras de negócio**
+
+A implementação seguiu os seguintes critérios de aceitação:
+- Exibição da tabela-resumo na parte inferior da página, funcionando como camada final de consulta após a análise gráfica;
+- Respeito integral aos filtros aplicados no contexto da tela, refletindo automaticamente qualquer refinamento feito pelo usuário;
+- Suporte à ordenação de colunas, quando aplicável, permitindo ao analista reorganizar a visualização conforme sua necessidade de investigação;
+- Exibição dos valores com formatação correta (moeda, casas decimais), garantindo leitura precisa e sem ambiguidades.
+
+**Validações realizadas**
+
+Para garantir a confiabilidade da funcionalidade, foram validados os seguintes cenários de teste:
+- Verificação da exibição correta da tabela;
+- Verificação da resposta da tabela à aplicação de filtros;
+- Verificação do comportamento de ordenação das colunas, quando aplicável.
+
+Essa funcionalidade reforça a confiabilidade de todo o painel analítico, dando ao usuário a segurança de que os dados apresentados de forma visual têm total correspondência com os valores agregados subjacentes.
+
+</details>
+
+<details>
+  <summary><strong>Indicador de Desvio Orçamentário</strong></summary>
+
+Foi implementado um indicador visual do **desvio percentual** dos projetos em relação ao orçamento estimado. Essa funcionalidade permite ao gestor identificar rapidamente o nível de consumo do orçamento — se está dentro do esperado, próximo do limite ou já ultrapassado — antecipando decisões corretivas antes que o estouro orçamentário se torne crítico.
+
+**Comportamento e regras de negócio**
+
+- Exibição do desvio percentual por projeto, comparando o valor gasto ao orçamento estimado;
+- Respeito aos filtros aplicados no contexto da tela;
+- Atualização automática do indicador conforme novos dados de custo são consolidados.
+
+</details>
+
+<details>
+  <summary><strong>Data da Última Atualização</strong></summary>
+
+Para garantir transparência e confiabilidade das informações apresentadas, foi adicionada a exibição da **data e hora da última atualização dos dados** diretamente nos contextos analíticos relevantes da aplicação. Com isso, o usuário consegue verificar, a qualquer momento, se as informações exibidas estão atualizadas antes de basear qualquer decisão nelas.
+
+**Comportamento e regras de negócio**
+
+- Exibição da data/hora da última atualização de forma visível na interface;
+- Atualização do valor exibido conforme a carga de dados mais recente;
+- Origem do timestamp definida a partir da última importação/consolidação de dados.
+
+**Validações realizadas**
+- Verificação da exibição correta de data/hora;
+- Verificação da atualização do valor após uma nova carga de dados.
 
 </details>
 
@@ -830,6 +1013,14 @@ Essa abordagem consolidou um ciclo de feedback rápido, unindo testes automatiza
 
 <img width="903" height="74" alt="Captura de tela 2026-07-08 201133" src="https://github.com/user-attachments/assets/7325c6d5-aff5-4699-ac44-b595e6215064" />
 
+**Ferramentas e Tecnologias**
+
+- **Prometheus / Grafana** — Uso com autonomia
+  Configuração de targets de scraping, regras de alerta e provisionamento automático de dashboards. Construção de dashboards customizados para ambientes de staging e produção, com acompanhamento de métricas-chave (throughput, latência, taxa de erros). Escrita de queries PromQL para consultas e visualizações específicas. Integração do fluxo de coleta e exportação de métricas ao pipeline de CI/CD, permitindo observabilidade contínua a cada deploy.
+
+- **K6** — Uso com autonomia
+  Escrita de scripts de teste de carga e teste de fumaça (smoke tests), simulando cenários de uso com diferentes volumes de requisições. Definição de thresholds (limites) para métricas como tempo de resposta, taxa de erro e throughput. Integração dos testes ao pipeline de CI/CD, executando validações automatizadas a cada Pull Request antes da promoção para staging.
+
 </details>
 
 <details>
@@ -858,7 +1049,7 @@ Já a segunda documentação foi elaborada pensando na transição de responsabi
 
 Essa documentação teve como propósito assegurar uma transição de conhecimento fluida, permitindo que o time de DevOps compreendesse rapidamente as decisões técnicas tomadas e desse continuidade ao projeto com segurança e eficiência.
 
-Neste link está disponível toda a documentação referente ao planejamento, desenvolvimento e entrega da aplicação, incluindo também as diretrizes de manutenção: 
+Neste link está disponível toda a documentação referente ao planejamento, desenvolvimento e entrega da aplicação, incluindo também as diretrizes de manutenção:
 [Entrega do projeto](https://github.com/mariinetic/portifolio-fatec/tree/main/doc)
 
 </details>
@@ -867,8 +1058,7 @@ Neste link está disponível toda a documentação referente ao planejamento, de
 
 <img width="933" height="153" alt="image" src="https://github.com/user-attachments/assets/051ad8aa-9248-4dee-804f-7dcf9d5fb227" />
 
-
-**Contribuições Pessoais:** Atuei nas trilhas de Desenvolvimento e DevOps. Na trilha de desenvolvimento, implementei a tela de Materiais completa com Vue.js e TypeScript — cards de KPIs, filtros dinâmicos, quatro visualizações gráficas e tabela com paginação. Na trilha de DevOps, estruturei toda a stack de monitoramento com Prometheus, Alertmanager e Grafana, além da pipeline de logs com Logstash, separando os ambientes dev e prod em Docker Compose distintos.
+**Contribuições Pessoais:** Atuei nas trilhas de Desenvolvimento e DevOps. Na trilha de Desenvolvimento, implementei a tela de Materiais completa com Vue.js e TypeScript — cards de KPIs, filtros dinâmicos, quatro visualizações gráficas e tabela com paginação — além das telas de Horas, Consolidada, Composição de Custo, Evolução Temporal, Tabela-resumo de Validação, Indicador de Desvio Orçamentário e exibição da Data da Última Atualização. Na trilha de DevOps, estruturei toda a stack de monitoramento com Prometheus, Alertmanager e Grafana, além da pipeline de logs com Logstash, separando os ambientes dev e prod em Docker Compose distintos, e implementei os testes de carga e fumaça com K6 integrados ao pipeline de CI/CD.
 
 <details>
 <summary><strong>Hard Skills</strong></summary>
