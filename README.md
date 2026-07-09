@@ -2,9 +2,9 @@
 
 Atualmente curso graduação em **Banco de Dados** na **FATEC São José dos Campos**, com previsão de conclusão em 2026. Escolhi a FATEC em busca de uma formação sólida e orientada à prática, fortalecendo minha base para atuar na área de tecnologia.
 
-Sou **Software Developer** e **Early-Career AI Engineer** na **Ericsson**, onde desenvolvo soluções utilizando Python, Java, inteligência artificial, machine learning, automação com IA e LLMs. Minha atuação envolve o desenvolvimento de aplicações backend e de soluções inteligentes voltadas à otimização de processos e à geração de valor para o negócio.
+Sou **Software Developer** e **Early-Career AI Engineer** na **Ericsson**, onde atuo com Python, Java, inteligência artificial, machine learning, automação com IA e LLMs. Meu trabalho envolve o desenvolvimento de aplicações backend e de soluções inteligentes voltadas à otimização de processos e à geração de valor para o negócio.
 
-Sou apaixonada por inteligência artificial, desenvolvimento de software e dados, e tenho como objetivo evoluir constantemente, aprimorando minhas habilidades e contribuindo de forma efetiva para projetos e equipes, entregando soluções práticas, escaláveis e inteligentes com profissionalismo e dedicação.
+Sou apaixonada por inteligência artificial, desenvolvimento de software e dados. Busco evoluir continuamente, aprimorando minhas habilidades e contribuindo para projetos e equipes com soluções práticas, escaláveis e inovadoras.
 
 <p align="center">
   <strong>Meus contatos!</strong>
