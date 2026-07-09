@@ -1,8 +1,8 @@
 <img width="1500" height="500" alt="Brown Minimalist Welcome Message XTwitter Header" src="https://github.com/user-attachments/assets/72ef72e5-1b9f-4e33-829e-90e6cfb74873" />
 
-Atualmente curso graduação em Banco de Dados na FATEC São José dos Campos, com previsão de conclusão em 2026. Vim parar na FATEC após perceber que precisava de uma formação mais sólida e orientada à prática para me destacar na área de tecnologia. Desde então, iniciei minha trajetória profissional como estagiária em Inteligência Artificial e Desenvolvimento Full-Stack na Ericsson, onde desenvolvi habilidades em Python, Java, machine learning, automação com IA e LLMs, aplicando esses conhecimentos na criação de soluções inteligentes e no desenvolvimento de aplicações backend que otimizam processos e melhoram fluxos de trabalho.
+Atualmente curso graduação em **Banco de Dados** na **FATEC São José dos Campos**, com previsão de conclusão em 2026. Escolhi a FATEC em busca de uma formação sólida e orientada à prática, fortalecendo minha base para atuar na área de tecnologia.
 
-Valorizo o trabalho em equipe e a colaboração, buscando aprender continuamente com outras pessoas enquanto contribuo ativamente para os objetivos dos projetos. Acredito que a combinação entre soluções baseadas em IA e um backend bem estruturado é essencial para transformar ideias em resultados concretos.
+Sou **Software Developer** e ** Early-Career AI Engineer** na **Ericsson**, onde desenvolvo soluções utilizando Python, Java, inteligência artificial, machine learning, automação com IA e LLMs. Minha atuação envolve o desenvolvimento de aplicações backend e de soluções inteligentes voltadas à otimização de processos e à geração de valor para o negócio.
 
 Sou apaixonada por inteligência artificial, desenvolvimento de software e dados, e tenho como objetivo evoluir constantemente, aprimorando minhas habilidades e contribuindo de forma efetiva para projetos e equipes, entregando soluções práticas, escaláveis e inteligentes com profissionalismo e dedicação.
 
