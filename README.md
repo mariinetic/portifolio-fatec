@@ -18,11 +18,7 @@ Sou apaixonada por inteligência artificial, desenvolvimento de software e dados
   <a href="https://www.linkedin.com/in/oliveirasmari/" title="LinkedIn">
     <img src="https://img.shields.io/badge/-LinkedIn-FF69B4?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"/>
   </a>
-
-  <a href="https://github.com/mariinetic" title="GitHub">
-    <img src="https://img.shields.io/badge/-GitHub-FF69B4?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
-  </a>
-
+  
   <a href="mailto:mariana.oliveira7@aluno.cps.sp.gov.br" title="Outlook">
     <img src="https://img.shields.io/badge/-Outlook-FF69B4?style=flat-square&labelColor=FF69B4&logo=microsoft-outlook&logoColor=white" alt="Outlook"/>
   </a>
